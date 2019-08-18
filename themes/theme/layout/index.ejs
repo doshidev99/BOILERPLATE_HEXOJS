@@ -1,1 +1,25 @@
-<h1> Hello index</h1>
+<div class="row ">
+  <section class="col-lg-8 ">
+    <ul>
+      <% page.posts.map(function(post){ %>
+      <article class="post">
+        <h2 class="post__title"> <%- post.title %> </h2>
+        <p class="post__date"> <%- post.date.format('DD-MM-YYYY') %> </p>
+        <div> Tags: <% post.tags.map(function(tag){  %>
+          <a href="<%- config.root %><%- tag.path %>" class="post__tag"> <%= tag.name %> </a>
+          <% }) %>
+        </div>
+        <p><%- post.excerpt %></p>
+        <a href="<%- post.path %>" class="post__more"> More
+      </article>
+      </article>
+      <% }) %>
+    </ul>
+    <% if (page.prev){ %>
+    <a href="<%- config.root %><%- page.prev_link %>" class="section__next section__next-right">&larr; Newer Posts</a>
+    <% } %>
+    <% if (page.next){ %>
+    <a href="<%- config.root %><%- page.next_link %>" class="section__next section__next-left">Older Posts &rarr;</a>
+    <% } %>
+  </section>
+</div>
